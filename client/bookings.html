@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers - Sunnyside Holidays</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4fbfc;
+            color:#12324a;
+        }
+
+        header{
+            width:90%;
+            max-width:1300px;
+            margin:35px auto;
+            background:#083b66;
+            padding:25px 35px;
+            border-radius:18px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:20px;
+        }
+
+        .logo-area{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
+
+        .logo-img{
+            width:140px;
+            background:white;
+            padding:10px;
+            border-radius:10px;
+        }
+
+        nav{
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+        }
+
+        nav a{
+            background:#0097a7;
+            color:white;
+            text-decoration:none;
+            padding:13px 22px;
+            border-radius:10px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        nav a:hover{
+            background:#00bcd4;
+        }
+
+        main{
+            width:90%;
+            max-width:1200px;
+            margin:40px auto;
+        }
+
+        h1{
+            color:#083b66;
+            margin-bottom:10px;
+            font-size:40px;
+        }
+
+        .subtitle{
+            margin-bottom:25px;
+            font-size:18px;
+        }
+
+        .box{
+            background:white;
+            padding:30px;
+            border-radius:18px;
+            margin-bottom:30px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .box h2{
+            background:#0097a7;
+            color:white;
+            padding:12px;
+            border-radius:8px;
+            margin-bottom:25px;
+        }
+
+        .row{
+            display:flex;
+            gap:20px;
+            flex-wrap:wrap;
+            margin-bottom:20px;
+        }
+
+        .field{
+            flex:1;
+            min-width:250px;
+        }
+
+        .field label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+        }
+
+        .field input{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:15px;
+        }
+
+        button{
+            background:#0097a7;
+            color:white;
+            border:none;
+            padding:13px 25px;
+            border-radius:8px;
+            font-weight:bold;
+            cursor:pointer;
+            margin-right:10px;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#00bcd4;
+        }
+
+        .delete-btn{
+            background:#d63031;
+        }
+
+        .delete-btn:hover{
+            background:#b71c1c;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+            overflow:hidden;
+            border-radius:12px;
+        }
+
+        table th{
+            background:#0097a7;
+            color:white;
+            padding:14px;
+            text-align:left;
+        }
+
+        table td{
+            padding:12px;
+            border-bottom:1px solid #eee;
+        }
+
+        table tr:hover{
+            background:#f4fbfc;
+        }
+
+        #searchInput{
+            width:100%;
+            padding:14px;
+            border-radius:10px;
+            border:1px solid #ccc;
+            margin-bottom:20px;
+            font-size:15px;
+        }
+
+        footer{
+            background:#063f4a;
+            color:white;
+            text-align:center;
+            padding:25px;
+            margin-top:50px;
+        }
+
+        @media(max-width:768px){
+
+            header{
+                flex-direction:column;
+                align-items:flex-start;
+            }
+
+            nav{
+                width:100%;
+            }
+
+            nav a{
+                width:100%;
+                text-align:center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo-area">
+        <img src="images/logo.png" alt="Logo" class="logo-img">
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="customers.html">Customers</a>
+        <a href="payments.html">Payments</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="employee-login.html">Employee Login</a>
+    </nav>
+
+</header>
+
+<main>
+
+    <h1>Customer Management</h1>
+    <p class="subtitle">Add, edit, search and delete customers.</p>
+
+    <div class="box">
+
+        <h2>Add / Edit Customer</h2>
+
+        <input type="hidden" id="editId">
+
+        <div class="row">
+
+            <div class="field">
+                <label>First Name</label>
+                <input type="text" id="firstName">
+            </div>
+
+            <div class="field">
+                <label>Last Name</label>
+                <input type="text" id="lastName">
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="field">
+                <label>Email</label>
+                <input type="email" id="email">
+            </div>
+
+            <div class="field">
+                <label>Phone</label>
+                <input type="text" id="phone">
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="field">
+                <label>Date of Birth</label>
+                <input type="date" id="dob">
+            </div>
+
+            <div class="field">
+                <label>Address</label>
+                <input type="text" id="address">
+            </div>
+
+        </div>
+
+        <button onclick="saveCustomer()">Save Customer</button>
+        <button onclick="clearForm()">Clear</button>
+
+    </div>
+
+    <div class="box">
+
+        <h2>All Customers</h2>
+
+        <input type="text" id="searchInput" placeholder="Search customers..." onkeyup="displayCustomers()">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>DOB</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="customerTable"></tbody>
+
+        </table>
+
+    </div>
+
+</main>
+
+<footer>
+    © 2026 Sunnyside Holidays Ltd
+</footer>
+
+<script>
+
+    let customers = JSON.parse(localStorage.getItem("customers")) || [];
+
+    let nextId = Number(localStorage.getItem("nextCustomerId")) || 1;
+
+    function saveCustomer(){
+
+        let editId = document.getElementById("editId").value;
+
+        let customer = {
+
+            id: editId ? Number(editId) : nextId++,
+
+            firstName: document.getElementById("firstName").value,
+
+            lastName: document.getElementById("lastName").value,
+
+            email: document.getElementById("email").value,
+
+            phone: document.getElementById("phone").value,
+
+            dob: document.getElementById("dob").value,
+
+            address: document.getElementById("address").value
+        };
+
+        if(customer.firstName === "" || customer.lastName === "" || customer.email === ""){
+
+            alert("Please fill required fields");
+
+            return;
+        }
+
+        if(editId){
+
+            customers = customers.map(function(c){
+
+                if(c.id === Number(editId)){
+
+                    return customer;
+                }
+
+                return c;
+            });
+
+            alert("Customer updated successfully");
+
+        }else{
+
+            customers.push(customer);
+
+            alert("Customer added successfully");
+        }
+
+        localStorage.setItem("customers", JSON.stringify(customers));
+
+        localStorage.setItem("nextCustomerId", nextId);
+
+        clearForm();
+
+        displayCustomers();
+    }
+
+    function displayCustomers(){
+
+        let table = document.getElementById("customerTable");
+
+        let search = document.getElementById("searchInput").value.toLowerCase();
+
+        table.innerHTML = "";
+
+        let filteredCustomers = customers.filter(function(c){
+
+            return c.firstName.toLowerCase().includes(search) ||
+
+                   c.lastName.toLowerCase().includes(search) ||
+
+                   c.email.toLowerCase().includes(search);
+        });
+
+        if(filteredCustomers.length === 0){
+
+            table.innerHTML = `
+                <tr>
+                    <td colspan="8" style="text-align:center;">
+                        No customers found
+                    </td>
+                </tr>
+            `;
+
+            return;
+        }
+
+        filteredCustomers.forEach(function(c){
+
+            table.innerHTML += `
+                <tr>
+
+                    <td>${c.id}</td>
+
+                    <td>${c.firstName}</td>
+
+                    <td>${c.lastName}</td>
+
+                    <td>${c.email}</td>
+
+                    <td>${c.phone}</td>
+
+                    <td>${c.dob}</td>
+
+                    <td>${c.address}</td>
+
+                    <td>
+
+                        <button onclick="editCustomer(${c.id})">
+                            Edit
+                        </button>
+
+                        <button class="delete-btn"
+                            onclick="deleteCustomer(${c.id})">
+                            Delete
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+        });
+    }
+
+    function editCustomer(id){
+
+        let customer = customers.find(function(c){
+
+            return c.id === id;
+        });
+
+        document.getElementById("editId").value = customer.id;
+
+        document.getElementById("firstName").value = customer.firstName;
+
+        document.getElementById("lastName").value = customer.lastName;
+
+        document.getElementById("email").value = customer.email;
+
+        document.getElementById("phone").value = customer.phone;
+
+        document.getElementById("dob").value = customer.dob;
+
+        document.getElementById("address").value = customer.address;
+
+        window.scrollTo(0,0);
+    }
+
+    function deleteCustomer(id){
+
+        if(!confirm("Delete this customer?")) return;
+
+        customers = customers.filter(function(c){
+
+            return c.id !== id;
+        });
+
+        localStorage.setItem("customers", JSON.stringify(customers));
+
+        displayCustomers();
+
+        alert("Customer deleted");
+    }
+
+    function clearForm(){
+
+        document.getElementById("editId").value = "";
+
+        document.getElementById("firstName").value = "";
+
+        document.getElementById("lastName").value = "";
+
+        document.getElementById("email").value = "";
+
+        document.getElementById("phone").value = "";
+
+        document.getElementById("dob").value = "";
+
+        document.getElementById("address").value = "";
+    }
+
+    displayCustomers();
+
+</script>
+
+</body>
+</html>

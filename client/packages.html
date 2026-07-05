@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages - Sunnyside Holidays</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="top-header">
+
+    <div class="logo-area">
+        <img src="images/logo.png" alt="Sunnyside Holidays Logo" class="logo-img">
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="customers.html">Customers</a>
+        <a href="payments.html">Payments</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="employee-login.html">Employee Login</a>
+    </nav>
+
+</header>
+
+<!-- MAIN CONTENT -->
+<section class="info-section">
+
+    <h1>Holiday Packages</h1>
+
+    <p>
+        View, add, edit and delete holiday packages from the catalogue.
+    </p>
+
+    <!-- ADD PACKAGE -->
+    <div class="form-box">
+
+        <h2>Add New Package</h2>
+
+        <input type="text" id="newPackageName" placeholder="Package Name">
+
+        <input type="text" id="newDestination" placeholder="Destination">
+
+        <input type="number" id="newDurationDays" placeholder="Duration (days)">
+
+        <input type="number" id="newPricePerPerson" placeholder="Price">
+
+        <button onclick="addPackage()">
+            Add Package
+        </button>
+
+    </div>
+
+    <!-- EDIT PACKAGE -->
+    <div class="form-box">
+
+        <h2>Edit Package</h2>
+
+        <input type="number" id="editPackageId" placeholder="Package ID">
+
+        <button onclick="fetchPackage()">
+            Fetch Package
+        </button>
+
+        <input type="text" id="editPackageName" placeholder="Package Name">
+
+        <input type="text" id="editDestination" placeholder="Destination">
+
+        <input type="number" id="editDurationDays" placeholder="Duration">
+
+        <input type="number" id="editPricePerPerson" placeholder="Price">
+
+        <button onclick="updatePackage()">
+            Save Changes
+        </button>
+
+    </div>
+
+    <!-- DELETE PACKAGE -->
+    <div class="form-box">
+
+        <h2>Delete Package</h2>
+
+        <input type="number" id="deletePackageId" placeholder="Package ID">
+
+        <button onclick="deletePackage()">
+            Delete Package
+        </button>
+
+    </div>
+
+    <!-- PACKAGE TABLE -->
+    <h2>All Packages</h2>
+
+    <table border="1" width="100%" cellpadding="10">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Package Name</th>
+                <th>Destination</th>
+                <th>Duration</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+
+        <tbody id="packagesTableBody">
+
+        </tbody>
+
+    </table>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 Sunnyside Holidays Ltd. All Rights Reserved.
+    </p>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+
+function fetchAllPackages() {
+
+    fetch('http://localhost:3000/packages')
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        const table = document.getElementById('packagesTableBody');
+
+        table.innerHTML = '';
+
+        data.forEach(pkg => {
+
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td>${pkg.package_id}</td>
+                <td>${pkg.package_name}</td>
+                <td>${pkg.destination}</td>
+                <td>${pkg.duration_days}</td>
+                <td>£${pkg.price_per_person}</td>
+            `;
+
+            table.appendChild(row);
+
+        });
+
+    });
+
+}
+
+function addPackage() {
+
+    fetch('http://localhost:3000/packages', {
+
+        method: 'POST',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+
+            package_name: document.getElementById('newPackageName').value,
+
+            destination: document.getElementById('newDestination').value,
+
+            duration_days: document.getElementById('newDurationDays').value,
+
+            price_per_person: document.getElementById('newPricePerPerson').value
+
+        })
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        alert('Package Added');
+
+        fetchAllPackages();
+
+    });
+
+}
+
+function fetchPackage() {
+
+    const id = document.getElementById('editPackageId').value;
+
+    fetch(`http://localhost:3000/packages/${id}`)
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        document.getElementById('editPackageName').value = data.package_name;
+
+        document.getElementById('editDestination').value = data.destination;
+
+        document.getElementById('editDurationDays').value = data.duration_days;
+
+        document.getElementById('editPricePerPerson').value = data.price_per_person;
+
+    });
+
+}
+
+function updatePackage() {
+
+    const id = document.getElementById('editPackageId').value;
+
+    fetch(`http://localhost:3000/packages/${id}`, {
+
+        method: 'PUT',
+
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+
+            package_name: document.getElementById('editPackageName').value,
+
+            destination: document.getElementById('editDestination').value,
+
+            duration_days: document.getElementById('editDurationDays').value,
+
+            price_per_person: document.getElementById('editPricePerPerson').value
+
+        })
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        alert('Package Updated');
+
+        fetchAllPackages();
+
+    });
+
+}
+
+function deletePackage() {
+
+    const id = document.getElementById('deletePackageId').value;
+
+    fetch(`http://localhost:3000/packages/${id}`, {
+
+        method: 'DELETE'
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        alert('Package Deleted');
+
+        fetchAllPackages();
+
+    });
+
+}
+
+fetchAllPackages();
+
+</script>
+
+</body>
+</html>

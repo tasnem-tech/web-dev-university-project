@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sunnyside Holidays</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="top-header">
+
+        <div class="logo-area">
+            <img src="images/logo.png" alt="Sunnyside Holidays Logo" class="logo-img">
+        </div>
+
+ <nav>
+    <a href="index.html">Home</a>
+    <a href="packages.html">Packages</a>
+    <a href="bookings.html">Bookings</a>
+    <a href="customers.html">Customers</a>
+    <a href="payments.html">Payments</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="employee-login.html">Employee Login</a>
+</nav>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <p class="tag-line">ATOL & ABTA Protected</p>
+
+            <h1>Discover Your Perfect Holiday</h1>
+
+            <p class="description">
+                Explore affordable and luxury holiday packages across Europe with Sunnyside Holidays.
+                We provide trusted bookings, flexible payment plans and unforgettable travel experiences.
+            </p>
+
+            <div class="features">
+                <span>✈ Flights Included</span>
+                <span>🏨 Top Hotels</span>
+                <span>🛡 Protected Booking</span>
+                <span>💳 Flexible Payments</span>
+            </div>
+
+            <div class="buttons">
+                <a href="packages.html" class="btn">Browse Packages</a>
+                <a href="contact.html" class="btn btn-outline">Get a Quote</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats">
+
+        <div class="stat-box">
+            <h2 id="statCustomers">0</h2>
+            <p>Customers</p>
+        </div>
+
+        <div class="stat-box">
+            <h2 id="statPackages">0</h2>
+            <p>Packages</p>
+        </div>
+
+        <div class="stat-box">
+            <h2 id="statBookings">0</h2>
+            <p>Bookings</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>24/7</h2>
+            <p>Support</p>
+        </div>
+
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="cards-section">
+
+        <h2>Why Choose Sunnyside Holidays?</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🌍 Great Destinations</h3>
+                <p>Travel to beautiful locations across Europe with carefully selected packages.</p>
+            </div>
+
+            <div class="card">
+                <h3>🛡 Protected Booking</h3>
+                <p>Book safely with trusted and protected holiday services.</p>
+            </div>
+
+            <div class="card">
+                <h3>💳 Flexible Payments</h3>
+                <p>Pay easily using flexible instalment and payment options.</p>
+            </div>
+
+            <div class="card">
+                <h3>☎ Friendly Support</h3>
+                <p>Our support team is available to help customers anytime.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Destinations -->
+    <section class="destinations">
+
+        <h2>Popular Destinations</h2>
+
+        <div class="destination-grid">
+
+            <div class="destination-card">
+                <img src="images/spain.jpg" alt="Spain">
+                <div class="destination-text">
+                    <h3>Spain</h3>
+                    <p>Sunny beaches and luxury resorts.</p>
+                </div>
+            </div>
+
+            <div class="destination-card">
+                <img src="images/portugal.jpg" alt="Portugal">
+                <div class="destination-text">
+                    <h3>Portugal</h3>
+                    <p>Beautiful coastline and relaxing holidays.</p>
+                </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Sunnyside Holidays Ltd. All Rights Reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+
+        fetch('/customers')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('statCustomers').innerText = data.length;
+            });
+
+        fetch('/packages')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('statPackages').innerText = data.length;
+            });
+
+        fetch('/bookings')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('statBookings').innerText = data.length;
+            });
+
+    </script>
+
+</body>
+
+</html>
+<a href="bookings.html">Bookings</a>
+

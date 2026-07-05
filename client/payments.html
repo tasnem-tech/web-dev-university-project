@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payments - Sunnyside Holidays</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-header">
+<img src="images/logo.png" class="logo-img" alt="Sunnyside Holidays Logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="customers.html">Customers</a>
+        <a href="payments.html">Payments</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <div class="page-title">
+        <h1>Payment Management</h1>
+        <p>Add, view and delete customer payment records.</p>
+    </div>
+
+    <div class="form-box">
+        <div class="form-box-header">Add New Payment</div>
+        <div class="form-box-body">
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Customer Name</label>
+                    <input type="text" id="customerName" placeholder="e.g. Tasnem Ahmed">
+                </div>
+
+                <div class="form-field">
+                    <label>Booking ID</label>
+                    <input type="number" id="bookingId" placeholder="e.g. 1">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Amount Paid (£)</label>
+                    <input type="number" id="amountPaid" placeholder="0.00">
+                </div>
+
+                <div class="form-field">
+                    <label>Payment Date</label>
+                    <input type="date" id="paymentDate">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Payment Method</label>
+                    <select id="paymentMethod">
+                        <option>Card</option>
+                        <option>Bank Transfer</option>
+                        <option>Cash</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label>Status</label>
+                    <select id="paymentStatus">
+                        <option>Paid</option>
+                        <option>Pending</option>
+                        <option>Failed</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn" onclick="addPayment()">Add Payment</button>
+        </div>
+    </div>
+
+    <div class="form-box">
+        <div class="form-box-header">Delete Payment</div>
+        <div class="form-box-body">
+
+            <div class="form-row">
+                <div class="form-field">
+                    <label>Payment ID</label>
+                    <input type="number" id="deletePaymentId" placeholder="Enter payment ID">
+                </div>
+
+                <div class="form-field">
+                    <label>&nbsp;</label>
+                    <button class="btn" onclick="deletePayment()">Delete Payment</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <h2>All Payments</h2>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Booking ID</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="paymentTable"></tbody>
+        </table>
+    </div>
+</main>
+
+<footer>
+    <p>© 2026 Sunnyside Holidays Ltd. All Rights Reserved.</p>
+</footer>
+
+<script>
+    let payments = [];
+    let paymentId = 1;
+
+    function addPayment() {
+        let customer = document.getElementById("customerName").value;
+        let booking = document.getElementById("bookingId").value;
+        let amount = document.getElementById("amountPaid").value;
+        let date = document.getElementById("paymentDate").value;
+        let method = document.getElementById("paymentMethod").value;
+        let status = document.getElementById("paymentStatus").value;
+
+        if (customer === "" || booking === "" || amount === "") {
+            alert("Please fill customer name, booking ID and amount.");
+            return;
+        }
+
+        payments.push({
+            id: paymentId++,
+            customer: customer,
+            booking: booking,
+            amount: amount,
+            date: date,
+            method: method,
+            status: status
+        });
+
+        displayPayments();
+
+        document.getElementById("customerName").value = "";
+        document.getElementById("bookingId").value = "";
+        document.getElementById("amountPaid").value = "";
+        document.getElementById("paymentDate").value = "";
+        document.getElementById("paymentMethod").value = "Card";
+        document.getElementById("paymentStatus").value = "Paid";
+
+        alert("Payment added successfully.");
+    }
+
+    function displayPayments() {
+        let table = document.getElementById("paymentTable");
+        table.innerHTML = "";
+
+        payments.forEach(function(p) {
+            table.innerHTML += `
+                <tr>
+                    <td>${p.id}</td>
+                    <td>${p.customer}</td>
+                    <td>${p.booking}</td>
+                    <td>£${p.amount}</td>
+                    <td>${p.date}</td>
+                    <td>${p.method}</td>
+                    <td>${p.status}</td>
+                </tr>
+            `;
+        });
+    }
+
+    function deletePayment() {
+        let id = document.getElementById("deletePaymentId").value;
+
+        payments = payments.filter(function(p) {
+            return p.id != id;
+        });
+
+        displayPayments();
+        document.getElementById("deletePaymentId").value = "";
+
+        alert("Payment deleted.");
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Sunnyside Holidays</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .about-hero {
+            width: 90%;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 80px;
+            border-radius: 25px;
+            background: linear-gradient(135deg,#dff8ff,#fff2d8);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-hero h1 {
+            font-size: 70px;
+            color: #083b66;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .about-hero p {
+            font-size: 22px;
+            color: #234;
+            line-height: 1.7;
+        }
+
+        .about-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .about-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .about-card h3 {
+            color: #0097a7;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .about-card p {
+            line-height: 1.7;
+        }
+
+        @media(max-width:900px){
+
+            .about-hero{
+                flex-direction: column;
+                padding: 40px;
+            }
+
+            .about-hero h1{
+                font-size: 45px;
+            }
+
+            .about-grid{
+                grid-template-columns: 1fr;
+            }
+
+            .top-header{
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <img src="images/logo.png" alt="Sunnyside Holidays" class="logo-img">
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="packages.html">Packages</a>
+        <a href="bookings.html">Bookings</a>
+        <a href="customers.html">Customers</a>
+        <a href="payments.html">Payments</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="employee-login.html">Employee Login</a>
+    </nav>
+
+</header>
+
+<section class="about-hero">
+
+    <div>
+        <h1>About Sunnyside Holidays</h1>
+
+        <p>
+            Your trusted travel partner since 2005.
+            We provide luxury and affordable holiday experiences
+            across Europe with professional customer service,
+            flexible payment plans and trusted bookings.
+        </p>
+    </div>
+
+</section>
+
+<section class="about-content">
+
+    <h2>Why Choose Us?</h2>
+
+    <div class="about-grid">
+
+        <div class="about-card">
+            <h3>Trusted Travel Experts</h3>
+            <p>
+                Our experienced travel team helps customers
+                find the perfect holiday packages with complete support.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h3>Flexible Payment Plans</h3>
+            <p>
+                Customers can manage bookings and instalment payments
+                easily through our secure booking system.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h3>Worldwide Destinations</h3>
+            <p>
+                We offer holidays to beaches, cities and luxury resorts
+                across multiple destinations.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Sunnyside Holidays Ltd. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
